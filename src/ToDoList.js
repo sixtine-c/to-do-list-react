@@ -3,21 +3,15 @@ import AddToDo from './ToDo/AddToDo';
 import Item from './ToDo/Item';
 
 const ToDoList = () => {
-  const [list, setList] = useState(['hello', 'coucou'])
+  const [list, setList] = useState(['call my mom', 'do my React exercise'])
   const addToDo = (item) => {
     setList((list) => [...list, item])
   }
 
   const deleteItem = (item) => {
-    for (var i = 0; i < list.length; i++) {
-      if (list[i] === item) {
-        list.splice(i, 1);
-      }
-    }
-    console.log(list)
+    const updatedList = list.filter((value) => value !== item);
+    setList(updatedList);
   }
-
-  console.log(list)
 
   return (
 

@@ -1,13 +1,12 @@
 
 const Item = ({item, deleteItem}) => {
-  const truc = () => {
-    console.log(item)
+  const itemToDelete = () => {
    deleteItem(item)
   }
 
   return (
     <li>
-      {item} <button onClick={truc}> delete</button>
+      {item} <button onClick={itemToDelete}> delete</button>
     </li>
   )
 }
