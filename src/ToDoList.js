@@ -21,17 +21,13 @@ const ToDoList = () => {
         <AddToDo addToDo={addToDo} />
       </div>
 
-      <div>
+      <div className='list'>
         {
           list?.map((item, i) => {
-            const keyName = `${list}-${item}-${i}`
-
-            if (item !== '')
-            {
-              return (
-                <Item key={keyName} item={item} deleteItem={deleteItem}/>
-              )
-            }
+            const keyName = `list-${item}-${i}`
+            return (
+              <Item key={keyName} item={item} deleteItem={deleteItem}/>
+            )
            })
         }
       </div>
