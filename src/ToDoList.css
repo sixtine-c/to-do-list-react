@@ -1,0 +1,25 @@
+
+
+.toDoList {
+  padding: 40px;
+  font-family: Arial;
+  text-align: center;
+}
+
+.list {
+  padding: 40px;
+}
+
+.list-global {
+  text-align: center;
+}
+
+.list-details {
+  margin-top: 10px;
+
+}
+
+.edit-details {
+  margin-top: 10px;
+  margin-bottom: 10px;
+}

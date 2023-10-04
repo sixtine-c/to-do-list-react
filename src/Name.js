@@ -1,7 +1,7 @@
 function Name({ name }) {
 
   return (
-    <div> Hello, {name} </div>
+    <h2> Hello, {name}, what are you up to today? </h2>
   )
 }
 

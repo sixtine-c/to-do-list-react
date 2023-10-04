@@ -1,35 +1,89 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import AddToDo from './ToDo/AddToDo';
+import EditItem from './ToDo/EditItem';
 import Item from './ToDo/Item';
+import './ToDoList.css';
 
+const initState = () => {
+  const items = window.localStorage.getItem('MY_APP_STATE')
+  if (items) {
+    return JSON.parse(items)
+  }
+  return []
+}
 const ToDoList = () => {
-  const [list, setList] = useState(['call my mom', 'do my React exercise'])
+  const [list, setList] = useState(initState)
+  const [editIndex, setEditIndex] = useState(null);
+
+
+  useEffect(() => {
+    // Retrieve count from local storage on component mount
+    //   console.log('list', list)
+    // }, [list])
+      window.localStorage.setItem('MY_APP_STATE', JSON.stringify(list));
+    }, [list]);
+
+
   const addToDo = (item) => {
-    setList((list) => [...list, item])
+    setList([...list, item])
   }
 
   const deleteItem = (item) => {
+
     const updatedList = list.filter((value) => value !== item);
-    setList(updatedList);
+    setList(updatedList)
   }
+
+  const editInfo = (itemIndex) => {
+    if (editIndex !== itemIndex) {
+    setEditIndex(itemIndex)
+    } else {
+      setEditIndex(null)
+    }
+  }
+
+  const editToDo = (oldItem, newItem) => {
+    const updatedList = list.map((value) => {
+      if (value === oldItem) {
+        value = newItem
+      }
+      return value
+    })
+    setList(updatedList)
+  }
+
+
 
   return (
 
     <div>
       <div>
-        <h1> Your to-do-list</h1>
-        <AddToDo addToDo={addToDo} />
+        <AddToDo addToDo={addToDo} list={list} />
       </div>
 
       <div className='list'>
-        {
-          list?.map((item, i) => {
-            const keyName = `list-${item}-${i}`
-            return (
-              <Item key={keyName} item={item} deleteItem={deleteItem}/>
-            )
-           })
-        }
+      <h3> Your to-do-list</h3>
+        <div className='list-global'>
+          {
+            list?.map((item, i) => {
+              const keyName = `list-${item}-${i}`
+              const keyEdit = `list-edit-${item}-${i}`
+              return (
+                <div>
+                  <div className='list-details' key={keyName}>
+                    <Item item={item} deleteItem={deleteItem} editInfo ={() => editInfo(i)}/>
+                  </div>
+                  {editIndex === i && (
+                    <div className='edit-details' key={keyEdit}>
+                      <EditItem item={item} editToDo={editToDo} list={list} />
+                    </div>
+                  )}
+                </div>
+              )
+            })
+          }
+
+        </div>
       </div>
     </div>
   )
