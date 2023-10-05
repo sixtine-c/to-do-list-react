@@ -50,6 +50,7 @@ const ToDoList = () => {
       return value
     })
     setList(updatedList)
+    setEditIndex(null)
   }
 
 

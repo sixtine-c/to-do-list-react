@@ -29,7 +29,6 @@ const EditItem = ({ item, editToDo, list}) => {
     else {
       editToDo(oldItem, inputToEdit)
     }
-    setInputToEdit('')
   }
 
 return (

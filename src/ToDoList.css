@@ -11,7 +11,9 @@
 }
 
 .list-global {
-  text-align: center;
+  display: grid;
+  grid-template-rows: 1fr 1fr 1fr;
+  grid-gap: 10px;
 }
 
 .list-details {
