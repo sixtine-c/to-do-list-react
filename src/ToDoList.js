@@ -68,14 +68,14 @@ const ToDoList = () => {
           {
             list?.map((item, i) => {
               const keyName = `list-${item}-${i}`
-              const keyEdit = `list-edit-${item}-${i}`
+
               return (
-                <div>
-                  <div className='list-details' key={keyName}>
+                <div key={keyName}>
+                  <div className='list-details' >
                     <Item item={item} deleteItem={deleteItem} editInfo ={() => editInfo(i)}/>
                   </div>
                   {editIndex === i && (
-                    <div className='edit-details' key={keyEdit}>
+                    <div className='edit-details'>
                       <EditItem item={item} editToDo={editToDo} list={list} />
                     </div>
                   )}
